@@ -38,4 +38,5 @@ public class Table implements Serializable {
     public String getName() {
 		return tableName;
 	}
+    
 }
