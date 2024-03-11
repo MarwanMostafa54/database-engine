@@ -30,26 +30,18 @@ public class DBApp {
 	// be passed in htblColNameType
 	// htblColNameValue will have the column name as key and the data
 	// type as value
-		public void createTable(String strTableName, String strClusteringKeyColumn, Hashtable<String, String> htblColNameType) throws IOException {
-			String filePath = "./metadata.csv"; // Adjust the file path as needed
-	
-			try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-				for (Map.Entry<String, String> entry : htblColNameType.entrySet()) {
-					// Get the key and value of the current entry
-					String key = entry.getKey();
-					String value = entry.getValue();
-	
-					boolean flag = key.equals(strClusteringKeyColumn);
-	
-					// Write metadata to the CSV file
-					writer.write(strTableName + ',' + key + ',' + value + ',' + flag + ",null,null");
-					writer.newLine(); // Add a new line after each entry
-				}
-				System.out.println("Metadata has been written to " + filePath);
-			}
-		//throw DBAppException
+	public void createTable(String strTableName, String strClusteringKeyColumn,
+			Hashtable<String, String> htblColNameType) throws IOException {
+		try {
+			Table table = new Table(strTableName, strClusteringKeyColumn, htblColNameType);
+		} catch (DBAppException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// throw DBAppException
 	}
-	//following method creates a B+tree index
+
+	// following method creates a B+tree index
 	public void createIndex(String strTableName,
 			String strColName,
 			String strIndexName) throws DBAppException {
@@ -155,5 +147,4 @@ public class DBApp {
 			exp.printStackTrace();
 		}
 	}
-
 }
