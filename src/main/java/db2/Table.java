@@ -5,8 +5,6 @@ import java.util.Hashtable;
 import java.util.Set;
 import java.util.Vector;
 
-import javax.swing.text.Utilities;
-
 public class Table implements Serializable {
     private Vector<Integer> pagesGroup;
     private String tableName;
@@ -29,11 +27,15 @@ public class Table implements Serializable {
                 }
                 Tool.WriteIntoMetaData(htblColNameType, strTableName, strClusteringKeyColumn);
                 pagesGroup = new Vector<Integer>();
+                Tool.serializeTable(this);
             } else {
                 throw new DBAppException("Table already exists. Please use another name.");
             }
+
         }
 
     }
-
+    public String getName() {
+		return tableName;
+	}
 }
