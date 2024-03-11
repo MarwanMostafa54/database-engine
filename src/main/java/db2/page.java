@@ -2,6 +2,8 @@ package db2;
 import java.io.*;
 import java.util.*;
 
+import javax.swing.text.Utilities;
+
 
 
 public class page implements Serializable{
@@ -18,7 +20,7 @@ public class page implements Serializable{
         pageID = Tool.readNextId("config//DBApp.properties");
 		Tool.incrementNextId("config//DBApp.properties"); 
         elements = new Vector<Vector>();
-        
+        N = Tool.readPageSize("config//DBApp.properties");
     }
     
     public int getN() {
