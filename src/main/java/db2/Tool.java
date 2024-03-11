@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
@@ -94,5 +95,40 @@ public class Tool {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'checkKey'");
     }
+
+
+
+    public static int readNextId(String path) {
+		try{
+			FileReader reader =new FileReader(path);
+			Properties p = new Properties();
+			p.load(reader);
+			String theNum = p.getProperty("nextNodeId");
+			return Integer.parseInt(theNum);}
+
+		catch(IOException E){
+			E.printStackTrace();
+			System.out.println("Error reading properties");
+		}
+		return 0;
+	}
+
+	public static void incrementNextId(String path) {
+		try{
+			FileReader reader =new FileReader(path);
+			Properties p = new Properties();
+			p.load(reader);
+
+			int ID = Integer.parseInt(p.getProperty("nextNodeId")) + 1;
+			p.setProperty("nextNodeId",ID+"");
+			p.store(new FileWriter("config//DBApp.properties"),"Database engine properties");
+		}
+
+		catch(IOException E){
+			E.printStackTrace();
+			System.out.println("Error reading properties");
+		}
+	}
+
 
 }
