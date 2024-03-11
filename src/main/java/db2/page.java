@@ -3,7 +3,11 @@ package db2;
 import java.io.*;
 import java.util.*;
 
-public class page implements Serializable {
+import javax.swing.text.Utilities;
+
+
+
+public class page implements Serializable{
 
     private int N = 10;
     private int count;
@@ -17,7 +21,7 @@ public class page implements Serializable {
         pageID = Tool.readNextId("config//DBApp.properties");
         Tool.incrementNextId("config//DBApp.properties");
         elements = new Vector<Vector>();
-
+        N = Tool.readPageSize("config//DBApp.properties");
     }
 
     public int getN() {

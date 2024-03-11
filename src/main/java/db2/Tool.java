@@ -135,6 +135,21 @@ public class Tool {
 	}
 
 
+    public static int readPageSize(String path) {
+		try{
+			FileReader reader =new FileReader(path);
+			Properties p = new Properties();
+			p.load(reader);
+			String theNum = p.getProperty("MaximumRowsCountinPage");
+			return Integer.parseInt(theNum);}
+
+		catch(IOException E){
+			E.printStackTrace();
+			System.out.println("Error reading properties");
+		}
+		return 0;
+	}
+
 
     public static void serializeTable(Table T) {
 		//store into file (serialize)
