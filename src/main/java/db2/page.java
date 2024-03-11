@@ -36,7 +36,7 @@ public class page implements Serializable {
 
         return "";
     }
-    public static void verifyTuple(String strTableName, Hashtable<String,Object> htblColNameValue, Hashtable<String, String>columnNameColumnType) throws DBAppException {
+    public static void CheckTuple(String strTableName, Hashtable<String,Object> htblColNameValue, Hashtable<String, String>columnNameColumnType) throws DBAppException {
 		//and checking if the user gave me a value for every column
 
 		for (Map.Entry<String, String> mapElement :columnNameColumnType.entrySet()) {
